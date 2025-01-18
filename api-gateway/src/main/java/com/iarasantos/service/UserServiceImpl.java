@@ -6,6 +6,7 @@ import com.iarasantos.repository.UserRepository;
 import jakarta.ws.rs.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,9 +25,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User saveUser(User user) {
-        if (findUserByUsername(user.getUsername()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Duplicated entry for username.");
-        }
+
         user.setCreateTime(LocalDateTime.now());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.USER);

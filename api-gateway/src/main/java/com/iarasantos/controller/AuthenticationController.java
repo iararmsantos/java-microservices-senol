@@ -23,6 +23,9 @@ public class AuthenticationController {
 
     @PostMapping("signup")
     public ResponseEntity<?> signup(@RequestBody User user) {
+        if (userService.findUserByUsername(user.getUsername()).isPresent()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
