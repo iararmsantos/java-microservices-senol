@@ -4,6 +4,6 @@ export default class Course {
         this.subtitle = subtitle;
         this.price = price;
         this.createTime = createTime;
-        tjis.id = id;
+        this.id = id;
     }
 }

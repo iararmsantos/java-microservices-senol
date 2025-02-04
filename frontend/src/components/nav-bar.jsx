@@ -11,6 +11,7 @@ const NavBar = () => {
 
     const logout = () => {
         dispatch(clearCurrentUser());
+        console.log("PROBLEM!")
         navigate("/login")
     }
     return (
